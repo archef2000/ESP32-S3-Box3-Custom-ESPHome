@@ -44,3 +44,40 @@ sensor:
       - clamp:
           min_value: 0
           max_value: 100
+
+binary_sensor:
+###### radar sensor ########
+  - id: radar
+    platform: gpio
+    pin:
+      number: GPIO21
+    name: "Presence detect"
+    disabled_by_default: false
+    device_class: "occupancy"
+    on_state:
+      if:
+        condition:
+          and:
+            - switch.is_on: s_saver
+            - switch.is_on: s_saver_presc 
+            - display.is_displaying_page: saver_page
+        then:
+          - display.page.show: idle_page
+          - component.update: s3_box_lcd
+          - script.execute: saver_enabled
+
+  - id: ss_wake_presc
+    platform: touchscreen
+    page_id: ss_set_page
+    internal: true
+    x_min: 250
+    x_max: 315
+    y_min: 180
+    y_max: 205
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - switch.toggle: s_saver_presc
+        - component.update: s3_box_lcd
+        
