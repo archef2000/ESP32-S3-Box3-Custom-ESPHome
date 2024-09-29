@@ -1,5 +1,5 @@
 substitutions:
-  sensors: "true"
+  sensors: "false"
 
 switch:
   - id: s_saver_presc
