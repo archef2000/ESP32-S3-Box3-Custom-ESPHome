@@ -1,0 +1,46 @@
+switch:
+  - id: s_saver_presc
+    platform: template
+    name: Screen wake on motion
+    icon: 'mdi:motion-sensor'
+    entity_category: config
+    optimistic: true    
+    restore_mode: RESTORE_DEFAULT_OFF 
+
+sensor:
+  - platform: aht10
+    i2c_id: bus_b
+    variant: AHT20
+    temperature:
+      name: "S3 Temperature"
+      id: s3temp
+    humidity:
+      name: "S3 Humidity"
+    update_interval: 60s
+
+  - id: battery_voltage
+    pin: GPIO10
+    platform: adc
+    unit_of_measurement: "V"
+    accuracy_decimals: 1
+    device_class: "voltage"
+    entity_category: "diagnostic"
+    disabled_by_default: true
+    update_interval: 30s
+    attenuation: auto
+    filters:
+        - multiply: 4.11
+
+  - id: battery_percent
+    platform: copy
+    source_id: battery_voltage
+    name: "Battery level"
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    device_class: "battery"
+    entity_category: "diagnostic"
+    filters:
+      - lambda: return (x - 2.7) / (4.2 - 2.7) * 100;
+      - clamp:
+          min_value: 0
+          max_value: 100
