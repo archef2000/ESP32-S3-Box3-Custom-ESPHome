@@ -49,14 +49,13 @@ substitutions:
 #####      UNLESS YOU KNOW WHAT YOU ARE DOING     ######  
   font_glyphs: '&@!"''%()+=,-_.:°/$€£¥?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyzÀàÁáÂâÃãÄäĀāĂăÅåǺǻẠạĄąÆæǼǽĆćĈĉČčĊċÇçĎďĐđÐðÈèÉéÊêẼẽĚěËëĒēĔĕĖėẸẹĘęĜĝǦǧĞğĠġĢģĤĥĦħıÌìÍíÎîĨĩÏïĪīĬĭİỊịĮįȷĴĵĶķĸĹĺĽľĻļŁłĿŀŃńÑñŇňŅņƝɲŊŋŉÒòÓóÔôÕõÖöŌōŎŏŐőỌọǪǫØøǾǿŒœŔŕŘřŖŗŚśŜŝŠšŞşȘșẞßŤťŢţȚțŦŧÞþÙùÚúÛûŨũÜüŪūŬŭŮůŰűỤụŲųẀẁẂẃŴŵẄẅỲỳÝýŶŷỸỹŸÿȲȳŹźŽžŻżĲĳƏə'  
 
-  sensors: "true" # To render the sensor pars on the dispaly
 ############# END OF SUBSTITUTIONS #################
 ####################################################
 
 packages:
   sensors:
     url: https://github.com/archef2000/ESP32-S3-Box3-Custom-ESPHome/
-    files: [s3b_sensors.yaml]
+    files: [s3b_sensors.yaml] # use "no_s3b_sensors.yaml" for the no sensor version
     ref: main
     refresh: 0s
 
