@@ -1,13 +1,16 @@
 substitutions:
   sensors: "false"
 
-globals:
-  - id: s3temp
-    type: int
-    initial_value: '0'
-  - id: s_saver_presc
-    type: int
-    initial_value: '0'
-  - id: battery_percent
-    type: int
-    initial_value: '0'
+sensor:
+  - platform: template
+    id: s3temp
+    lambda: return 0;
+    update_interval: never
+  - platform: template
+    id: s_saver_presc
+    lambda: return 0;
+    update_interval: never
+  - platform: template
+    id: battery_percent
+    lambda: return 0;
+    update_interval: never
