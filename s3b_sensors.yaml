@@ -1,3 +1,6 @@
+substitutions:
+  sensors: "false"
+
 switch:
   - id: s_saver_presc
     platform: template
